@@ -22,4 +22,12 @@ public class HomeController {
 		modelAndView.addObject("pageTitle", "Sistema de Notas - Login");
 		return modelAndView;
 	}
+
+	@GetMapping("/login-error")
+	public ModelAndView loginError() {
+		ModelAndView modelAndView = new ModelAndView("/home/login.html");
+		modelAndView.addObject("pageTitle", "Sistema de Notas - Login");
+		modelAndView.addObject("hasError", true);
+		return modelAndView;
+	}
 }

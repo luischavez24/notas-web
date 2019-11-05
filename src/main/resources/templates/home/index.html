@@ -1,74 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-<head th:replace="fragments/layout :: head(title=${pageTitle})">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/_layout}">
+>
+<head>
   <title>Index</title>
 </head>
 <body>
-  <div id="wrapper">
-    <th:block th:replace="fragments/layout :: sidebar"></th:block>
-    <div id="content-wrapper" class="d-flex flex-column">
-      <div id="content">
-        <th:block th:replace="fragments/layout :: topbar"></th:block>
-        <!-- Page Content -->
-        <div class="container-fluid">
-          <th:block th:replace="fragments/layout :: content_title(title='Bienvenida Valerie Luna!')"></th:block>
-          <div class="my-3"></div>
-          <div class="row">
-            <!-- Area Chart -->
-            <div class="col-xl-4 col-lg-3">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Datos Personales</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-8 col-lg-9">
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="card border-left-primary shadow h-100 py-2">
-                        <div class="card-body">
-                          <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Notas</div>
-                              <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                            </div>
-                            <div class="col-auto">
-                              <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  <th:block layout:fragment="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h1>Index</h1>
         </div>
-         <!-- End of Page Content -->
       </div>
     </div>
-  </div>
-  <th:block th:replace="fragments/layout :: scripts"></div>
+  </th:block>
+  <th:block layout:fragment="scripts">
+    <!-- Scripts de la pagina-->
+  </th:block>
 </body>
 </html>

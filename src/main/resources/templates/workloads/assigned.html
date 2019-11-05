@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/_layout}">
+>
+<head>
+    <title>Carga académica</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row mb-3">
+            <div class="col">
+                <h1>Carga Académica</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table id="workloadTable" class="table table-bordered table-hover">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>Id</th>
+                            <th>Año Académico</th>
+                            <th>Curso</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</th:block>
+<th:block layout:fragment="scripts">
+    <!-- Scripts de la pagina-->
+    <script type="application/javascript" th:src="@{/scripts/workloads/assigned.js}"></script>
+</th:block>
+</body>
+</html>
