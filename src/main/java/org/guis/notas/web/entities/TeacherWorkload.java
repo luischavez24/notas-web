@@ -16,6 +16,12 @@ public class TeacherWorkload {
     @Id
     private int academicYear;
 
+    @Column
+    private int gradeId;
+
+    @Column
+    private int sectionId;
+
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
@@ -50,5 +56,21 @@ public class TeacherWorkload {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public int getGradeId() {
+        return gradeId;
+    }
+
+    public void setGradeId(int gradeId) {
+        this.gradeId = gradeId;
+    }
+
+    public int getSectionId() {
+        return sectionId;
+    }
+
+    public void setSectionId(int sectionId) {
+        this.sectionId = sectionId;
     }
 }

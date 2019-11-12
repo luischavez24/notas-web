@@ -1,9 +1,9 @@
-let assignedModule = (function($) {
+let enrollmentModule = (function($, gradeId, sectionId) {
 
-    const workloadTableId = "#workloadTable";
+    const enrollmentTableId = "#enrollmenTable";
 
     function loadTableParameters() {
-        $(workloadTableId).DataTable({
+        $(enrollmentTableId).DataTable({
             serverSide: true,
             responsive: true,
             searching: false,
@@ -45,6 +45,6 @@ let assignedModule = (function($) {
     }
 
     return { main }
-})(jQuery);
+});
 
-window.onload = assignedModule.main;
+// window.onload = enrollmentModule(jQuery, gradeId, sectionId).main;

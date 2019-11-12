@@ -5,6 +5,7 @@ import org.guis.notas.web.entities.TeacherWorkloadPK;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.web.bind.annotation.GetMapping;
 
 public interface TeacherWorkloadRepository extends PagingAndSortingRepository<TeacherWorkload,TeacherWorkloadPK> {
 
