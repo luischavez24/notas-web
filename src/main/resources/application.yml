@@ -1,9 +1,9 @@
 server:
-  port: ${PORT:8080}
+  port: ${PORT:8082}
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/school_grades
-    username: developer
+    username: postgres
     password: developer
     hikari:
       maximum-pool-size: 5

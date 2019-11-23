@@ -40,6 +40,10 @@ public class TeacherWorkloadServiceImpl implements TeacherWorkloadService {
         // Returns the request page
         Page<TeacherWorkload> teacherWorkload = teacherWorkloadRepository.findAllByTeacherId(pageable, teacherId);
 
+        teacherWorkload.map(tw -> {
+
+        });
+
         return PageWrapper.of(teacherWorkload);
     }
 }
