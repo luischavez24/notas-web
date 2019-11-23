@@ -1,10 +1,15 @@
 package org.guis.notas.web.services;
 
+import org.guis.notas.web.entities.Enrollment;
 import org.guis.notas.web.entities.TeacherWorkload;
+import org.guis.notas.web.models.TeacherWorkloadModel;
 import org.guis.notas.web.utils.PageWrapper;
+
+import java.util.Optional;
 
 public interface TeacherWorkloadService {
 
-    PageWrapper<TeacherWorkload> findAllByTeacherUser(int page, int size, String teacherUser);
+    PageWrapper<TeacherWorkloadModel> findAllByTeacherUser(int page, int size, String teacherUser);
 
+    PageWrapper<Enrollment> findEnrollemntByWorkload(int gradeId, int sectionId, int academicYear,int page, int size);
 }

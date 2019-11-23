@@ -2,6 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{fragments/_layout}">
 >
 <head>
@@ -12,22 +13,22 @@
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col">
-                <h1>Carga Académica</h1>
+                <h1>Alumnos Matriculados</h1>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <table id="workloadTable" class="table table-bordered table-hover">
+                <table id="enrollmentsTable" class="table table-bordered table-hover">
                     <thead class="bg-primary text-white">
                         <tr>
-                            <th>Id</th>
-                            <th>Año Académico</th>
-                            <th>Curso</th>
-                            <th>Grado</th>
-                            <th>Sección</th>
+                            <th>DNI</th>
+                            <th>Apellido Paterno</th>
+                            <th>Apellido Materno</th>
+                            <th>Nombres</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
+                    <tbody class="text-capitalize"></tbody>
                 </table>
             </div>
         </div>
@@ -35,7 +36,12 @@
 </th:block>
 <th:block layout:fragment="scripts">
     <!-- Scripts de la pagina-->
-    <script type="application/javascript" th:src="@{/scripts/workloads/assigned.js}"></script>
+    <script type="application/javascript" th:src="@{/scripts/workloads/enrollments.js}"></script>
+    <script type="application/javascript">
+        var gradeId = [[${gradeId}]];
+        var sectionId = [[${sectionId}]];
+        enrollmentModule(jQuery, gradeId, sectionId).main();
+    </script>
 </th:block>
 </body>
 </html>

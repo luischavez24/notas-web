@@ -14,7 +14,19 @@ let assignedModule = (function($) {
                 { data: 'workloadId' },
                 { data: 'academicYear' },
                 { data: 'course', render: course => course.name },
-                { data: 'workloadId' },
+                { data: 'classroom', render: classroom => classroom.grade.name },
+                { data: 'classroom', render: classroom => classroom.name },
+                {
+                    data: null,
+                    render({ classroom }) {
+                        return `
+                            <a href="/workloads/assigned/enrollments/${classroom.grade.gradeId}/${classroom.sectionId}" 
+                                class="btn btn-info btn-circle">
+                                <i class="fa fa-info"></i>
+                            </a>
+                        `;
+                    }
+                },
             ],
             ajax: {
                 method: 'GET',
