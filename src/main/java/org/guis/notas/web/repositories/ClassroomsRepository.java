@@ -2,6 +2,7 @@ package org.guis.notas.web.repositories;
 
 import org.guis.notas.web.entities.Classroom;
 import org.guis.notas.web.entities.Enrollment;
+import org.guis.notas.web.utils.PageWrapper;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public interface ClassroomsRepository {
     @GetMapping("")
     List<Classroom> findAll();
 
-    @GetMapping("/{gradeId}/{sectionId}/enrollements/{academicYear}")
-    Page<Enrollment> findAllEnrollments(@PathVariable int gradeId, @PathVariable int sectionId, @PathVariable int academicYear,
-                                        @RequestParam Optional<Integer> page, Optional<Integer> size);
+    @GetMapping("/{gradeId}/{sectionId}/enrollments/{academicYear}")
+    PageWrapper<Enrollment> findAllEnrollments(@PathVariable int gradeId, @PathVariable int sectionId, @PathVariable int academicYear,
+                                               @RequestParam int page, @RequestParam int size);
 }

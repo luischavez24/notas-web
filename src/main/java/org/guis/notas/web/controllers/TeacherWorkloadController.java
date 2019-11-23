@@ -21,7 +21,7 @@ public class TeacherWorkloadController {
 
     @GetMapping("/assigned/enrollments/{gradeId}/{sectionId}")
     public ModelAndView assigned(@PathVariable int gradeId, @PathVariable int sectionId) {
-        ModelAndView modelAndView = new ModelAndView("/workloads/enrrolments.html");
+        ModelAndView modelAndView = new ModelAndView("/workloads/enrollments.html");
         modelAndView.addObject("gradeId", gradeId);
         modelAndView.addObject("sectionId", sectionId);
         return modelAndView;

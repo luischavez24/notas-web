@@ -1,6 +1,6 @@
 let enrollmentModule = (function($, gradeId, sectionId) {
 
-    const enrollmentTableId = "#enrollmenTable";
+    const enrollmentTableId = "#enrollmentsTable";
 
     function loadTableParameters() {
         $(enrollmentTableId).DataTable({
@@ -11,25 +11,20 @@ let enrollmentModule = (function($, gradeId, sectionId) {
             lengthChange: false,
             sDom: 'Rlfrtip',
             columns: [
-                { data: 'workloadId' },
-                { data: 'academicYear' },
-                { data: 'course', render: course => course.name },
-                { data: 'classroom', render: classroom => classroom.grade.name },
-                { data: 'classroom', render: classroom => classroom.name },
+                { data: 'student', render: student => student.dni },
+                { data: 'student', render: student => student.paternalSurname },
+                { data: 'student', render: student => student.maternalSurname },
+                { data: 'student', render: student => student.names },
                 {
                     data: null,
                     render(workload) {
-                        return `
-                            <button class="btn btn-info btn-circle">
-                                <i class="fa fa-info"></i>
-                            </button>
-                        `;
+                        return ` `;
                     }
                 },
             ],
             ajax: {
                 method: 'GET',
-                url: '/api/workloads',
+                url: `/api/workloads/${gradeId}/${sectionId}/enrollments`,
                 beforeSend() {
                     $('body').loading('toggle');
                 },
@@ -41,10 +36,9 @@ let enrollmentModule = (function($, gradeId, sectionId) {
     }
 
     function main() {
+        console.log("Main")
         loadTableParameters();
     }
 
     return { main }
 });
-
-// window.onload = enrollmentModule(jQuery, gradeId, sectionId).main;

@@ -32,7 +32,7 @@ public class TeacherWorkloadRestController {
         return workloadWrapper;
     }
 
-    @GetMapping("/gradeId/sectionId/enrrolments")
+    @GetMapping("/{gradeId}/{sectionId}/enrollments")
     public PageWrapper<Enrollment> findAllEnrolments(@PathVariable int gradeId, @PathVariable int sectionId,
                                                      @RequestParam int start, @RequestParam int length, @RequestParam int draw) {
 

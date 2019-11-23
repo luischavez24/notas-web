@@ -70,10 +70,9 @@ public class TeacherWorkloadServiceImpl implements TeacherWorkloadService {
     @Override
     public PageWrapper<Enrollment> findEnrollemntByWorkload(int gradeId, int sectionId, int academicYear, int page, int size) {
 
-        Page<Enrollment> enrollmentPage = classroomsRepository.findAllEnrollments(gradeId, sectionId, academicYear,
-                Optional.of(page), Optional.of(size));
+        PageWrapper<Enrollment> enrollmentPage = classroomsRepository.findAllEnrollments(gradeId, sectionId, academicYear,page,size);
 
-        return PageWrapper.of(enrollmentPage);
+        return enrollmentPage;
     }
 
 
