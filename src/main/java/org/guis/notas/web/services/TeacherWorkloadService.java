@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface TeacherWorkloadService {
 
     PageWrapper<TeacherWorkloadModel> findAllByTeacherUser(int page, int size, String teacherUser);
+    
+    Optional<TeacherWorkloadModel> findWorkloadlByTeacherUser(String teacherUser, int workloadId);
 
     PageWrapper<Enrollment> findEnrollemntByWorkload(int gradeId, int sectionId, int academicYear,int page, int size);
 }

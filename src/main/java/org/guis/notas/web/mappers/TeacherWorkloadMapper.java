@@ -13,6 +13,8 @@ public class TeacherWorkloadMapper {
         workloadModel.setTeacherId(workloadEntity.getTeacherId());
         workloadModel.setAcademicYear(workloadEntity.getAcademicYear());
         workloadModel.setWorkloadId(workloadEntity.getWorkloadId());
+        workloadModel.setGradeId(workloadEntity.getGradeId());
+        workloadModel.setSectionId(workloadEntity.getSectionId());
         CourseModel courseModel = new CourseModel();
         courseModel.setCourseId(workloadEntity.getCourse().getCourseId());
         courseModel.setName(workloadEntity.getCourse().getName());

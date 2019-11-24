@@ -18,13 +18,21 @@ let assignedModule = (function($) {
                 { data: 'classroom', render: classroom => classroom.name },
                 {
                     data: null,
-                    render({ classroom }) {
+                    render({ classroom, workloadId }) {
+                        console.log({ classroom });
+                        const { grade: { gradeId }, sectionId } = classroom;
                         return `
-                            <a href="/workloads/assigned/enrollments/${classroom.grade.gradeId}/${classroom.sectionId}" 
+                            <a href="/workloads/assigned/enrollments/${gradeId}/${sectionId}" 
                                 class="btn btn-info btn-circle">
                                 <i class="fa fa-info"></i>
                             </a>
+                            <a href="/workloads/assigned/upload-notes/${workloadId}" 
+                                class="btn btn-success btn-circle">
+                                <i class="fa fa-upload"></i>
+                            </a>
                         `;
+
+                        //upload-notes
                     }
                 },
             ],

@@ -1,13 +1,18 @@
 package org.guis.notas.web.controllers;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.guis.notas.web.entities.Enrollment;
 import org.guis.notas.web.entities.TeacherWorkload;
 import org.guis.notas.web.models.TeacherWorkloadModel;
+import org.guis.notas.web.models.UploadNotesModel;
 import org.guis.notas.web.services.TeacherWorkloadService;
 import org.guis.notas.web.utils.PageWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import com.fasterxml.jackson.databind.JsonSerializer;
 
 import java.time.ZonedDateTime;
 
@@ -15,6 +20,8 @@ import java.time.ZonedDateTime;
 @RequestMapping("/api/workloads")
 public class TeacherWorkloadRestController {
 
+	private static final Log LOG = LogFactory.getLog(TeacherWorkloadRestController.class);
+	
     @Autowired
     private TeacherWorkloadService teacherWorkloadService;
 
@@ -44,5 +51,10 @@ public class TeacherWorkloadRestController {
         enrollmentPageWrapper.setDraw(draw);
 
         return enrollmentPageWrapper;
+    }
+    
+    @PostMapping("/upload-notes")
+    public void uploadNote(@RequestBody UploadNotesModel uploadNotesModel) {
+    	LOG.info(uploadNotesModel);
     }
 }

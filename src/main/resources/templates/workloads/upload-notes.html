@@ -12,20 +12,28 @@
 <th:block layout:fragment="content">
     <div class="container-fluid">
         <div class="row mb-3">
-            <div class="col">
-                <h1>Alumnos Matriculados</h1>
+            <div class="col-10">
+                <h1>Registro de Notas</h1>
+            </div>
+            <div class="col-2 text-right">
+                <button id="btnUploadNotes" class="btn btn-success btn-circle" data-toggle="tooltip" title="Guardar notas">
+                    <i class="fa fa-save"></i>
+                </button>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <table id="enrollmentsTable" class="table table-bordered table-hover">
+                <table id="notesTable" class="table table-bordered table-hover">
                     <thead class="bg-primary text-white">
                         <tr>
                             <th>DNI</th>
                             <th>Apellido Paterno</th>
                             <th>Apellido Materno</th>
                             <th>Nombres</th>
-                            <th>Acciones</th>
+                            <th>Tareas</th>
+                            <th>Participación</th>
+                            <th>Parcial</th>
+                            <th>Final</th>
                         </tr>
                     </thead>
                     <tbody class="text-capitalize"></tbody>
@@ -36,11 +44,14 @@
 </th:block>
 <th:block layout:fragment="scripts">
     <!-- Scripts de la pagina-->
-    <script type="application/javascript" th:src="@{/scripts/workloads/enrollments.js}"></script>
-    <script type="application/javascript">
+    <script type="application/javascript" th:src="@{/scripts/workloads/upload-notes.js}"></script>
+    <script th:inline="javascript" type="application/javascript">
+        const workloadId = [[${workloadId}]];
         const gradeId = [[${gradeId}]];
         const sectionId = [[${sectionId}]];
-        enrollmentModule(jQuery, gradeId, sectionId).main();
+        const _csrf_token = [[${_csrf.token}]];
+        const _csrf_param_name = [[${_csrf.parameterName}]];
+        uploadNotesModule(jQuery, workloadId, gradeId, sectionId, _csrf_token, _csrf_param_name).main();
     </script>
 </th:block>
 </body>

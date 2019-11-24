@@ -8,6 +8,10 @@ public class TeacherWorkloadModel {
 
     private int workloadId;
 
+    private int gradeId;
+    
+    private int sectionId;
+    
     private int academicYear;
 
     private CourseModel course;
@@ -53,4 +57,22 @@ public class TeacherWorkloadModel {
     public void setClassroom(Optional<ClassroomModel> classroom) {
         this.classroom = classroom;
     }
+
+	public int getGradeId() {
+		return gradeId;
+	}
+
+	public void setGradeId(int gradeId) {
+		this.gradeId = gradeId;
+	}
+
+	public int getSectionId() {
+		return sectionId;
+	}
+
+	public void setSectionId(int sectionId) {
+		this.sectionId = sectionId;
+	}
+    
+    
 }

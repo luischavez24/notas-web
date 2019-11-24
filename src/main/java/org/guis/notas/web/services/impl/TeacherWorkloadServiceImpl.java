@@ -64,13 +64,19 @@ public class TeacherWorkloadServiceImpl implements TeacherWorkloadService {
                     return workloadModel;
                 });
 
-        teacherWorkload.map(tw -> {
-
-        });
-
         return PageWrapper.of(teacherWorkload);
     }
 
+    @Override
+    public Optional<TeacherWorkloadModel> findWorkloadlByTeacherUser(String teacherUser, int workloadId) {
+    	 int teacherId = userRepository.findByUsername(teacherUser)
+                 .orElseThrow(() -> new RuntimeException("El profesor no existe"))
+                 .getUserId();
+    	 return teacherWorkloadRepository.findByWorkloadIdAndTeacherId(workloadId, teacherId)
+    			 .map(tw -> teacherWorkloadMapper.toModel(tw));
+    	 
+    }
+    
     @Override
     public PageWrapper<Enrollment> findEnrollemntByWorkload(int gradeId, int sectionId, int academicYear, int page, int size) {
 
