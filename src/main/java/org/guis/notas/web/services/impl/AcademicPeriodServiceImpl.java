@@ -1,6 +1,7 @@
 package org.guis.notas.web.services.impl;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.guis.notas.web.entities.AcademicPeriod;
@@ -18,6 +19,11 @@ public class AcademicPeriodServiceImpl implements AcademicPeriodService {
 	@Override
 	public Optional<AcademicPeriod> findCurrentAcademicPeriod() {
 		return academicPeriodRepository.findByStartsOnLessThanEqualAndEndsOnGreaterThanEqual(LocalDate.now(), LocalDate.now());
+	}
+
+	@Override
+	public List<AcademicPeriod> findAllAcademicPeriods() {
+		return academicPeriodRepository.findAll();
 	}
 
 }

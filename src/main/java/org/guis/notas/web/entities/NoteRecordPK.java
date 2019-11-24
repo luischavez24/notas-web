@@ -21,4 +21,36 @@ public class NoteRecordPK implements Serializable{
 	public NoteRecordPK() {
 		super();
 	}
+
+	public int getTeacherId() {
+		return teacherId;
+	}
+
+	public void setTeacherId(int teacherId) {
+		this.teacherId = teacherId;
+	}
+
+	public int getWorkloadId() {
+		return workloadId;
+	}
+
+	public void setWorkloadId(int workloadId) {
+		this.workloadId = workloadId;
+	}
+
+	public int getAcademicYear() {
+		return academicYear;
+	}
+
+	public void setAcademicYear(int academicYear) {
+		this.academicYear = academicYear;
+	}
+
+	public int getAcademicPeriod() {
+		return academicPeriod;
+	}
+
+	public void setAcademicPeriod(int academicPeriod) {
+		this.academicPeriod = academicPeriod;
+	}
 }

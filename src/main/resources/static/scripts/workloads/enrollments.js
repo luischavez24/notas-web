@@ -15,12 +15,6 @@ let enrollmentModule = (function($, gradeId, sectionId) {
                 { data: 'student', render: student => student.paternalSurname },
                 { data: 'student', render: student => student.maternalSurname },
                 { data: 'student', render: student => student.names },
-                {
-                    data: null,
-                    render(workload) {
-                        return ` `;
-                    }
-                },
             ],
             ajax: {
                 method: 'GET',

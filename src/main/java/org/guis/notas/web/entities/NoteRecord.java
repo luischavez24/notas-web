@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -27,8 +28,16 @@ public class NoteRecord {
 	private int academicPeriod;
 	
     @ManyToOne
-    @JoinColumn(name = "uploaded_by", insertable = false, updatable = false)
+    @JoinColumn(name = "uploaded_by")
     private Teacher uploadedBy;
+    
+    @ManyToOne
+    @JoinColumns({
+    	@JoinColumn(name ="teacher_id"),
+    	@JoinColumn(name ="workload_id"),
+    	@JoinColumn(name ="academic_year")
+    })
+    private TeacherWorkload workload;
     
     @Column(name="uploaded_on")
     private ZonedDateTime uploadedOn;

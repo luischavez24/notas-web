@@ -6,6 +6,7 @@ import org.guis.notas.web.entities.Enrollment;
 import org.guis.notas.web.entities.TeacherWorkload;
 import org.guis.notas.web.models.TeacherWorkloadModel;
 import org.guis.notas.web.models.UploadNotesModel;
+import org.guis.notas.web.services.NoteRecordsService;
 import org.guis.notas.web.services.TeacherWorkloadService;
 import org.guis.notas.web.utils.PageWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class TeacherWorkloadRestController {
     @Autowired
     private TeacherWorkloadService teacherWorkloadService;
 
+    @Autowired
+    private NoteRecordsService noteRecordsService;
+    
     @GetMapping("")
     public PageWrapper<TeacherWorkloadModel> findAllByTeacher(Authentication authentication, @RequestParam int start, @RequestParam int length, @RequestParam int draw) {
 
@@ -54,7 +58,10 @@ public class TeacherWorkloadRestController {
     }
     
     @PostMapping("/upload-notes")
-    public void uploadNote(@RequestBody UploadNotesModel uploadNotesModel) {
+    public void uploadNote(Authentication authentication, @RequestBody UploadNotesModel uploadNotesModel) {
     	LOG.info(uploadNotesModel);
+    	
+    	noteRecordsService.uploadNotes(uploadNotesModel, authentication.getName());
+    	
     }
 }

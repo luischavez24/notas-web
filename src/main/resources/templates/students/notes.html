@@ -12,11 +12,11 @@
     <div class="container-fluid">
         <div class="row mb-3">
             <div class="col">
-                <h1>Carga Académica</h1>
+                <h1>Notas</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <!-- <div class="col">
                 <table id="workloadTable" class="table table-bordered table-hover">
                     <thead class="bg-primary text-white">
                         <tr>
@@ -29,22 +29,14 @@
                         </tr>
                     </thead>
                 </table>
-            </div>
+            </div> -->
+            <div th:text="${studentNote}"></div>
         </div>
     </div>
 </th:block>
 <th:block layout:fragment="scripts">
     <!-- Scripts de la pagina-->
-    <script type="application/javascript" th:src="@{/scripts/workloads/assigned.js}"></script>
-    <script th:inline="javascript">
-        const recordAlreadyExists = /*[[${recordAlreadyExists}]]*/ false;
-        if(recordAlreadyExists) {
-            Toast.fire({
-            icon: 'warning',
-            title: 'El registro de notas ya existe'
-          });
-        }
-    </script>
+    <script type="application/javascript" th:src="@{/scripts/students/notes.js}"></script>
 </th:block>
 </body>
 </html>
