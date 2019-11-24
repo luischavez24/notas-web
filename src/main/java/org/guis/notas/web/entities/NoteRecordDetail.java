@@ -122,5 +122,7 @@ public class NoteRecordDetail {
 		this.finalNote = finalNote;
 	}
 	
-	
+	public double getAvgNote() {
+		return (homeworkNote + participationNote + partialNote + finalNote) / 4.0;
+	}
 }

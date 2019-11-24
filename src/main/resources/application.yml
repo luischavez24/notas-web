@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/school_grades
-    username: developer
+    username: postgres # developer
     password: developer
     hikari:
       maximum-pool-size: 5

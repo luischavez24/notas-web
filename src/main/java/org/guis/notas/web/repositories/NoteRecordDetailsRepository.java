@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NoteRecordDetailsRepository extends JpaRepository<NoteRecordDetail, NoteRecordDetailPK>{
 	
-	List<NoteRecordDetail> findAllByStudentId(String studentId);
+	List<NoteRecordDetail> findByStudentId(String studentId);
 	
 }

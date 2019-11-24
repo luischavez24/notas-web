@@ -1,22 +1,47 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/_layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{fragments/_layout}">
 >
+
 <head>
-    <title>Carga académica</title>
+  <title>Carga académica</title>
 </head>
+
 <body>
-<th:block layout:fragment="content">
+  <th:block layout:fragment="content">
     <div class="container-fluid">
-        <div class="row mb-3">
-            <div class="col">
-                <h1>Notas</h1>
-            </div>
+      <div class="row mb-3">
+        <div class="col">
+          <h1>Notas</h1>
         </div>
-        <div class="row">
-            <!-- <div class="col">
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header text-white bg-primary">Datos del Alumno</div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item px-1">
+                  <span class="font-weight-bold">DNI: </span>
+                  [[${studentNote.student.dni}]]
+                </li>
+                <li class="list-group-item px-1">
+                  <span class="font-weight-bold">Nombres: </span>
+                  [[${studentNote.student.names}]]
+                </li>
+                <li class="list-group-item px-1">
+                  <span class="font-weight-bold">Apellido Paterno: </span>
+                  [[${studentNote.student.paternalSurname}]]
+                </li>
+                <li class="list-group-item px-1">
+                  <span class="font-weight-bold">Apellido Materno: </span>
+                  [[${studentNote.student.maternalSurname}]]
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col">
                 <table id="workloadTable" class="table table-bordered table-hover">
                     <thead class="bg-primary text-white">
                         <tr>
@@ -30,13 +55,48 @@
                     </thead>
                 </table>
             </div> -->
-            <div th:text="${studentNote}"></div>
+      </div>
+      <th:block th:each="period : ${studentNote.periods}">
+        <div class="row mt-3">
+          <div class="col">
+            <div class="card">
+              <div class="card-header text-white bg-primary">
+                  Periodo: [[${period.academicPeriod.academicYear}]] - [[${period.academicPeriod.academicPeriod}]]
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered table-hover">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>Curso</th>
+                            <th>Tareas</th>
+                            <th>Participación</th>
+                            <th>Parcial</th>
+                            <th>Final</th>
+                            <th>Promedio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="note : ${period.notes}">
+                            <td>[[${note.noteRecord.workload.course.name}]]</td>
+                            <td>[[${note.homeworkNote}]]</td>
+                            <td>[[${note.participationNote}]]</td>
+                            <td>[[${note.partialNote}]]</td>
+                            <td>[[${note.finalNote}]]</td>
+                            <td>[[${note.avgNote}]]</td>
+                        </tr>
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
+      </th:block>
     </div>
-</th:block>
-<th:block layout:fragment="scripts">
+  </th:block>
+  <th:block layout:fragment="scripts">
     <!-- Scripts de la pagina-->
     <script type="application/javascript" th:src="@{/scripts/students/notes.js}"></script>
-</th:block>
+  </th:block>
 </body>
+
 </html>

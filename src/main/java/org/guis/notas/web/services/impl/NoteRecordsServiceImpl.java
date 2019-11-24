@@ -121,7 +121,7 @@ public class NoteRecordsServiceImpl implements NoteRecordsService {
 		
 		List<NotesPerAcademicPeriod> notesPerAcademicPeriod = new ArrayList<>();
 		
-		List<NoteRecordDetail> notes = noteRecordDetailsRepository.findAllByStudentId(studentId);
+		List<NoteRecordDetail> notes = noteRecordDetailsRepository.findByStudentId(studentId);
 		
 		for(AcademicPeriod academicPeriod : academicPeriodService.findAllAcademicPeriods()) {
 			
@@ -137,6 +137,8 @@ public class NoteRecordsServiceImpl implements NoteRecordsService {
 			
 			notesPerAcademicPeriod.add(notePerPeriod);
 		}
+		
+		studentNote.setPeriods(notesPerAcademicPeriod);
 		
 		return studentNote;
 	}
