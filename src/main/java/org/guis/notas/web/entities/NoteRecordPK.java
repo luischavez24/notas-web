@@ -53,4 +53,10 @@ public class NoteRecordPK implements Serializable{
 	public void setAcademicPeriod(int academicPeriod) {
 		this.academicPeriod = academicPeriod;
 	}
+
+	@Override
+	public String toString() {
+		return "NoteRecordPK [teacherId=" + teacherId + ", workloadId=" + workloadId + ", academicYear=" + academicYear
+				+ ", academicPeriod=" + academicPeriod + "]";
+	}
 }

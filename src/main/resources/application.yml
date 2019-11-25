@@ -7,7 +7,7 @@ spring:
     password: developer
     hikari:
       maximum-pool-size: 5
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: validate
     properties:

@@ -15,7 +15,7 @@
           <h1>Notas</h1>
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-3">
         <div class="col-md-4">
           <div class="card">
             <div class="card-header text-white bg-primary">Datos del Alumno</div>
@@ -57,14 +57,14 @@
             </div> -->
       </div>
       <th:block th:each="period : ${studentNote.periods}">
-        <div class="row mt-3">
+        <div class="row mb-3">
           <div class="col">
             <div class="card">
               <div class="card-header text-white bg-primary">
-                  Periodo: [[${period.academicPeriod.academicYear}]] - [[${period.academicPeriod.academicPeriod}]]
+                Periodo: [[${period.academicPeriod.academicYear}]] - [[${period.academicPeriod.academicPeriod}]]
               </div>
               <div class="card-body">
-                <table class="table table-bordered table-hover">
+                <table th:if="${#lists.size(period.notes) > 0}" class="table table-bordered table-hover">
                     <thead class="bg-primary text-white">
                         <tr>
                             <th>Curso</th>
@@ -76,16 +76,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="note : ${period.notes}">
-                            <td>[[${note.noteRecord.workload.course.name}]]</td>
+                        <th:block th:each="note : ${period.notes}">
+                          <tr>
+                            <td>[[${note.course}]]</td>
                             <td>[[${note.homeworkNote}]]</td>
                             <td>[[${note.participationNote}]]</td>
                             <td>[[${note.partialNote}]]</td>
                             <td>[[${note.finalNote}]]</td>
                             <td>[[${note.avgNote}]]</td>
-                        </tr>
+                          </tr>
+                        </th:block>
+                        
                     </tbody>
                 </table>
+                <p th:if="${#lists.size(period.notes) == 0}">
+                  No hay notas registradas para el periodo académico
+                </p>
               </div>
             </div>
           </div>
@@ -98,5 +104,4 @@
     <script type="application/javascript" th:src="@{/scripts/students/notes.js}"></script>
   </th:block>
 </body>
-
 </html>

@@ -2,13 +2,16 @@ package org.guis.notas.web.entities;
 
 import java.time.ZonedDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
@@ -31,11 +34,11 @@ public class NoteRecord {
     @JoinColumn(name = "uploaded_by")
     private Teacher uploadedBy;
     
-    @ManyToOne
+    @ManyToOne()
     @JoinColumns({
-    	@JoinColumn(name ="teacher_id"),
-    	@JoinColumn(name ="workload_id"),
-    	@JoinColumn(name ="academic_year")
+    	@JoinColumn(name ="teacher_id", referencedColumnName = "teacher_id", insertable = false, updatable = false),
+    	@JoinColumn(name ="workload_id", referencedColumnName = "workload_id", insertable = false, updatable = false),
+    	@JoinColumn(name ="academic_year", referencedColumnName = "academic_year", insertable = false, updatable = false)
     })
     private TeacherWorkload workload;
     
@@ -89,4 +92,23 @@ public class NoteRecord {
 	public void setUploadedOn(ZonedDateTime uploadedOn) {
 		this.uploadedOn = uploadedOn;
 	}
+	
+	
+
+	public TeacherWorkload getWorkload() {
+		return workload;
+	}
+
+	public void setWorkload(TeacherWorkload workload) {
+		this.workload = workload;
+	}
+
+	@Override
+	public String toString() {
+		return "NoteRecord [teacherId=" + teacherId + ", workloadId=" + workloadId + ", academicYear=" + academicYear
+				+ ", academicPeriod=" + academicPeriod + ", uploadedBy=" + uploadedBy + ", workload=" + workload
+				+ ", uploadedOn=" + uploadedOn + "]";
+	}
+	
+	
 }
