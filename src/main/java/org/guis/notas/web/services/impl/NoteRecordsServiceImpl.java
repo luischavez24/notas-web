@@ -11,8 +11,10 @@ import org.guis.notas.web.entities.AcademicPeriod;
 import org.guis.notas.web.entities.NoteRecord;
 import org.guis.notas.web.entities.NoteRecordDetail;
 import org.guis.notas.web.entities.NoteRecordPK;
+import org.guis.notas.web.entities.Parent;
 import org.guis.notas.web.entities.Student;
 import org.guis.notas.web.entities.Teacher;
+import org.guis.notas.web.entities.UserCredentials;
 import org.guis.notas.web.models.NotesPerAcademicPeriod;
 import org.guis.notas.web.models.StudentInputModel;
 import org.guis.notas.web.models.StudentNote;
@@ -20,6 +22,7 @@ import org.guis.notas.web.models.UploadNotesModel;
 import org.guis.notas.web.repositories.AcademicPeriodRepository;
 import org.guis.notas.web.repositories.NoteRecordDetailsRepository;
 import org.guis.notas.web.repositories.NoteRecordsRepository;
+import org.guis.notas.web.repositories.ParentsRepository;
 import org.guis.notas.web.repositories.StudentsRepository;
 import org.guis.notas.web.repositories.UserRepository;
 import org.guis.notas.web.services.AcademicPeriodService;
@@ -47,6 +50,10 @@ public class NoteRecordsServiceImpl implements NoteRecordsService {
 	
 	@Autowired
 	private StudentsRepository studentsRepository;
+	
+	@Autowired
+	private ParentsRepository parentsRepository;
+	
 	
 	@Override
 	@Transactional
@@ -146,5 +153,14 @@ public class NoteRecordsServiceImpl implements NoteRecordsService {
 	private boolean sameAcademicPeriod(AcademicPeriod academicPeriod, NoteRecordDetail noteReg) {
 		return noteReg.getAcademicYear() == academicPeriod.getAcademicYear() 
 				&& noteReg.getAcademicPeriod() == academicPeriod.getAcademicPeriod();
+	}
+
+	@Override
+	public Parent findParentByUser(String parentUser) {
+		
+		UserCredentials credentials = userRepository.findByUsername(parentUser)
+				.orElseThrow(() -> new RuntimeException("El padre no se encuentra registrado"));
+		
+		return parentsRepository.findByDni(credentials.getPerson().getIdDocument());
 	}
 }

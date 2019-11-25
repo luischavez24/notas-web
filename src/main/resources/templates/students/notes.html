@@ -4,7 +4,7 @@
 >
 
 <head>
-  <title>Carga académica</title>
+  <title>Registro de Notas</title>
 </head>
 
 <body>
@@ -12,13 +12,15 @@
     <div class="container-fluid">
       <div class="row mb-3">
         <div class="col">
-          <h1>Notas</h1>
+          <h2>Registro de Notas</h2>
         </div>
       </div>
       <div class="row mb-3">
-        <div class="col-md-4">
+        <div class="col-md-3 col-lg-5 h-100 mb-3">
           <div class="card">
-            <div class="card-header text-white bg-primary">Datos del Alumno</div>
+            <div class="card-header text-white bg-primary">
+              Datos del Alumno
+            </div>
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item px-1">
@@ -37,24 +39,34 @@
                   <span class="font-weight-bold">Apellido Materno: </span>
                   [[${studentNote.student.maternalSurname}]]
                 </li>
+                <li class="list-group-item px-1">
+                  <span class="font-weight-bold">Teléfono: </span>
+                  [[${studentNote.student.phone}]]
+                </li>
+                <li class="list-group-item px-1">
+                  <span class="font-weight-bold">Correo: </span>
+                  [[${studentNote.student.email}]]
+                </li>
+                <li class="list-group-item px-1">
+                  <span class="font-weight-bold">Fecha de Nacimiento: </span>
+                  [[${studentNote.student.birthDate}]]
+                </li>
               </ul>
             </div>
           </div>
         </div>
-        <!-- <div class="col">
-                <table id="workloadTable" class="table table-bordered table-hover">
-                    <thead class="bg-primary text-white">
-                        <tr>
-                            <th>Id</th>
-                            <th>Año Académico</th>
-                            <th>Curso</th>
-                            <th>Grado</th>
-                            <th>Sección</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div> -->
+        <div class="col-md-9 col-lg-7">
+          <div class="card">
+            <div class="card-header text-white bg-primary">
+              Progreso de Notas
+            </div>
+            <div class="card-body">
+              <div class="chart">
+                <canvas id="notesChart" class="chart-canvas"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <th:block th:each="period : ${studentNote.periods}">
         <div class="row mb-3">
@@ -79,15 +91,44 @@
                         <th:block th:each="note : ${period.notes}">
                           <tr>
                             <td>[[${note.course}]]</td>
-                            <td>[[${note.homeworkNote}]]</td>
-                            <td>[[${note.participationNote}]]</td>
-                            <td>[[${note.partialNote}]]</td>
-                            <td>[[${note.finalNote}]]</td>
-                            <td>[[${note.avgNote}]]</td>
+                            <td class="text-center">
+                              <span th:class="${note.homeworkNote >= 11 ? 'badge badge-success' : 'badge badge-danger'}">
+                                [[${note.homeworkNote}]]
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <span th:class="${note.participationNote >= 11 ? 'badge badge-success' : 'badge badge-danger'}">
+                                  [[${note.participationNote}]]
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <span th:class="${note.partialNote >= 11 ? 'badge badge-success' : 'badge badge-danger'}">
+                                [[${note.partialNote}]]
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <span th:class="${note.finalNote >= 11 ? 'badge badge-success' : 'badge badge-danger'}">
+                                [[${note.finalNote}]]
+                              </span>
+                            </td>
+                            <td class="text-center"> 
+                              <span th:class="${note.avgNote >= 10.5 ? 'badge badge-success' : 'badge badge-danger'}">
+                                [[${#numbers.formatDecimal(note.avgNote,2,0)}]]
+                              </span>
+                            </td>
                           </tr>
                         </th:block>
-                        
                     </tbody>
+                    <tfoot>
+                      <tr>
+                        <td class="text-right" colspan="6">
+                          <span class="font-weight-bold mr-2">Promedio Final:</span>
+                          <span th:class="${period.avgNote >= 10.5 ? 'badge badge-success' : 'badge badge-danger'}">
+                            [[${#numbers.formatDecimal(period.avgNote,2,0)}]]
+                          </span>
+                        </td>
+                      </tr>
+                    </tfoot>
                 </table>
                 <p th:if="${#lists.size(period.notes) == 0}">
                   No hay notas registradas para el periodo académico
@@ -102,6 +143,9 @@
   <th:block layout:fragment="scripts">
     <!-- Scripts de la pagina-->
     <script type="application/javascript" th:src="@{/scripts/students/notes.js}"></script>
+    <script th:inline="javascript">
+      window.onload = notesModule(jQuery, /*[[${studentNote}]]*/ {}).main;
+    </script>
   </th:block>
 </body>
 </html>

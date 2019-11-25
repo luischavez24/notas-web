@@ -1,5 +1,6 @@
 package org.guis.notas.web.controllers;
 
+import org.guis.notas.web.entities.Parent;
 import org.guis.notas.web.services.NoteRecordsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,18 @@ import groovyjarjarpicocli.CommandLine.Model;
 public class StudentsController {
 	@Autowired
 	private NoteRecordsService noteRecordService;
+	
+	@GetMapping("")
+	public ModelAndView findStudentsByParent(Authentication authentication) {
+		// TODO: Validate if request user is the student's parent
+		ModelAndView modelAndView = new ModelAndView("/students/index.html");
+		
+		Parent parent = noteRecordService.findParentByUser(authentication.getName());
+		
+		modelAndView.addObject("students", parent.getChildren());
+		
+		return modelAndView;
+	}
 	
 	@GetMapping("/notes/{studentId}")
 	public ModelAndView findNotesByStudentId(Authentication authentication, @PathVariable String studentId) {

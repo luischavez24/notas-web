@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{fragments/_layout}">
+>
+
+<head>
+  <title>Hijos</title>
+</head>
+
+<body>
+  <th:block layout:fragment="content">
+    <div class="container-fluid">
+      <div class="row mb-3">
+        <div class="col">
+          <h1>Hijos</h1>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col">
+          <table th:if="${#lists.size(students) > 0}" class="table table-bordered table-hover">
+              <thead class="bg-primary text-white">
+                  <tr>
+                    <th>DNI</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Nombres</th>
+                    <th>Acciones</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <th:block th:each="student : ${students}">
+                    <tr>
+                      <td>[[${student.dni}]]</td>
+                      <td>[[${student.paternalSurname}]]</td>
+                      <td>[[${student.maternalSurname}]]</td>
+                      <td>[[${student.names}]]</td>
+                      <td>
+                        <a th:href="@{/students/notes/{id}(id=${student.dni})}"
+                          class="btn btn-success btn-cicle" data-toggle="tooltip" title="Ver registro de notas">
+                          <i class="fa fa-file"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  </th:block>
+              </tbody>
+          </table>
+          <p th:if="${#lists.size(students) == 0}">
+            No hay notas registradas para el periodo académico
+          </p>
+        </div>
+      </div>
+    </div>
+  </th:block>
+  <th:block layout:fragment="scripts">
+    <!-- Scripts de la pagina-->
+    <script type="application/javascript" th:src="@{/scripts/students/index.js}"></script>
+  </th:block>
+</body>
+</html>

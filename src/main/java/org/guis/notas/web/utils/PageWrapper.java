@@ -14,7 +14,17 @@ public class PageWrapper<T> {
 
     private int draw;
 
-    public PageWrapper(long recordsTotal, long recordsFiltered, List<T> data) {
+    private int display;
+    
+    public int getDisplay() {
+		return display;
+	}
+
+	public void setDisplay(int display) {
+		this.display = display;
+	}
+
+	public PageWrapper(long recordsTotal, long recordsFiltered, List<T> data) {
         this.recordsTotal = recordsTotal;
         this.recordsFiltered = recordsFiltered;
         this.data = data;

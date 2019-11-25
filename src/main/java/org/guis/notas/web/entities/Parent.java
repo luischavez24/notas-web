@@ -1,5 +1,7 @@
 package org.guis.notas.web.entities;
 
+import java.util.List;
+
 public class Parent {
 
     private String dni;
@@ -7,6 +9,8 @@ public class Parent {
     private String paternalSurname;
     private String maternalSurname;
 
+    private List<Student> children; 
+    
     public String getDni() {
         return dni;
     }
@@ -38,4 +42,12 @@ public class Parent {
     public void setMaternalSurname(String maternalSurname) {
         this.maternalSurname = maternalSurname;
     }
+
+	public List<Student> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<Student> children) {
+		this.children = children;
+	}
 }

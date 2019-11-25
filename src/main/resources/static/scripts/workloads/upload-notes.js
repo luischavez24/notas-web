@@ -56,6 +56,15 @@ let uploadNotesModule = (function ($, workloadId, gradeId, sectionId, _csrf_toke
         },
         complete() {
           $('body').loading('toggle');
+        },
+        error(xhr) {
+          $('body').loading('toggle');
+          const { error, message } = xhr.responseJSON;
+          Swal.fire({
+            icon: 'error',
+            title: error,
+            text: message
+          })
         }
       }
     })

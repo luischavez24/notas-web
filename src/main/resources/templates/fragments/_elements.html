@@ -30,7 +30,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" th:href="@{/}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Inicio</span></a>
             </li>
@@ -69,7 +69,7 @@
             </div>
 
             <li sec:authorize="hasAuthority('PARENT')" class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" th:href="@{/students}">
                     <i class="fas fa-fw fa-child"></i>
                     <span>Hijos</span></a>
             </li>
@@ -140,8 +140,8 @@
         <script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
 
         <script th:src="@{/vendor/datatables/jquery.dataTables.js}"></script>
-        <script th:src="@{/vendor/datatables/dataTables.bootstrap4.js}"></script>
         <script th:src="@{/vendor/datatables/responsive.bootstrap4.min.js}"></script>
+        <script th:src="@{/vendor/datatables/dataTables.bootstrap4.js}"></script>
         <script th:src="@{/vendor/loading/jquery.loading.min.js}"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>

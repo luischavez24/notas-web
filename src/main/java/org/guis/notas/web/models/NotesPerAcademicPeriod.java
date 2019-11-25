@@ -26,4 +26,8 @@ public class NotesPerAcademicPeriod {
 	public void setNotes(List<NoteRecordDetail> notes) {
 		this.notes = notes;
 	}
+	
+	public double getAvgNote() {
+		return notes.stream().mapToDouble(NoteRecordDetail::getAvgNote).average().orElse(0.0);
+	}
 }

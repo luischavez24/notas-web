@@ -30,7 +30,8 @@ public class TeacherWorkloadRestController {
     private NoteRecordsService noteRecordsService;
     
     @GetMapping("")
-    public PageWrapper<TeacherWorkloadModel> findAllByTeacher(Authentication authentication, @RequestParam int start, @RequestParam int length, @RequestParam int draw) {
+    public PageWrapper<TeacherWorkloadModel> findAllByTeacher(Authentication authentication, @RequestParam int start, 
+    		@RequestParam int length, @RequestParam int draw) {
 
         String teacherUser = authentication.getName();
 
@@ -39,13 +40,15 @@ public class TeacherWorkloadRestController {
         PageWrapper<TeacherWorkloadModel> workloadWrapper =  teacherWorkloadService.findAllByTeacherUser(page, length, teacherUser);
 
         workloadWrapper.setDraw(draw);
+        workloadWrapper.setDisplay(1);
 
         return workloadWrapper;
     }
 
     @GetMapping("/{gradeId}/{sectionId}/enrollments")
     public PageWrapper<Enrollment> findAllEnrolments(@PathVariable int gradeId, @PathVariable int sectionId,
-                                                     @RequestParam int start, @RequestParam int length, @RequestParam int draw) {
+                                                     @RequestParam int start, @RequestParam int length, 
+                                                     @RequestParam int draw) {
 
         int page = start / length;
 
@@ -53,7 +56,7 @@ public class TeacherWorkloadRestController {
                 ZonedDateTime.now().getYear(), page, length);
 
         enrollmentPageWrapper.setDraw(draw);
-
+        enrollmentPageWrapper.setDisplay(1);
         return enrollmentPageWrapper;
     }
     
