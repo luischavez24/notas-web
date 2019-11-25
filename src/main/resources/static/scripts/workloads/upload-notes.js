@@ -99,7 +99,12 @@ let uploadNotesModule = (function ($, workloadId, gradeId, sectionId, _csrf_toke
           })
         },
         error(xhr) {
-          console.log({ xhr });
+          const { error, message } = xhr.responseJSON;
+          Swal.fire({
+            icon: 'error',
+            title: error,
+            text: message
+          })
         }
       })
 

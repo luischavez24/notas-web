@@ -43,10 +43,10 @@ public class NoteRecordDetail {
 
     @ManyToOne
     @JoinColumns({
-    	@JoinColumn(name ="teacher_id"),
-    	@JoinColumn(name ="workload_id"),
-    	@JoinColumn(name ="academic_year"),
-    	@JoinColumn(name ="academic_period")
+    	@JoinColumn(name ="teacher_id", referencedColumnName = "teacher_id", insertable = false, updatable = false),
+    	@JoinColumn(name ="workload_id", referencedColumnName = "workload_id", insertable = false, updatable = false),
+    	@JoinColumn(name ="academic_year", referencedColumnName = "academic_year", insertable = false, updatable = false),
+    	@JoinColumn(name ="academic_period", referencedColumnName = "academic_period", insertable = false, updatable = false)
     })
 	private NoteRecord noteRecord;
 	
@@ -125,4 +125,18 @@ public class NoteRecordDetail {
 	public double getAvgNote() {
 		return (homeworkNote + participationNote + partialNote + finalNote) / 4.0;
 	}
+	
+	public String getCourse() {
+		return noteRecord.getWorkload().getCourse().getName();
+	}
+
+	@Override
+	public String toString() {
+		return "NoteRecordDetail [teacherId=" + teacherId + ", workloadId=" + workloadId + ", academicYear="
+				+ academicYear + ", academicPeriod=" + academicPeriod + ", studentId=" + studentId + ", homeworkNote="
+				+ homeworkNote + ", participationNote=" + participationNote + ", partialNote=" + partialNote
+				+ ", finalNote=" + finalNote + ", noteRecord=" + noteRecord + "]";
+	}
+	
+	
 }
